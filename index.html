@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FATAL_ERROR: ZULFIQAR_SYSTEM</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;900&family=Nosifer&family=VT323&family=Creepster&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body onclick="initSystem()">
+
+    <div class="scanlines"></div>
+    <div class="vhs"></div>
+    <div class="chromatic-aberration"></div>
+    <div class="blood-vignette"></div>
+    <div class="fog-layer"></div>
+    <div class="heartbeat-border"></div>
+    <canvas class="ghost-canvas" id="ghostCanvas"></canvas>
+
+    <div class="shake-screen" id="shaker"></div>
+    <div id="flashlight" style="--x: 50%; --y: 50%;"></div>
+    <div id="laser"></div>
+
+    <div class="blood-drip-container" id="bloodDrips"></div>
+
+    <div class="glitch-bar" id="glitchBar1"></div>
+    <div class="glitch-bar" id="glitchBar2"></div>
+    <div class="glitch-bar" id="glitchBar3"></div>
+
+    <div class="distortion-layer" id="distortion"></div>
+
+    <div class="skull-flash" id="skullFlash">
+        <div class="skull-emoji">💀</div>
+    </div>
+
+    <header>
+        <p class="connection-text">[ CONNECTION_SECURED ]</p>
+        <h1 class="glitch-title" data-text="ذو الفقار">ذو الفقار</h1>
+        <p class="subtitle">كيان سحق المبرمجين المبتدئين</p>
+        <p class="blink-prompt">اضغط في أي مكان لبدء الطقوس...</p>
+    </header>
+
+    <div class="horror-divider"></div>
+    <section class="section">
+        <h2 class="section-title reveal-item">الأرشيف الأسود</h2>
+        <div class="stat-cards-container">
+            <div class="stat-card reveal-item">
+                <h2 id="count1">0</h2>
+                <p>ضحية حاولت طلب رتبة</p>
+            </div>
+            <div class="stat-card reveal-item">
+                <h2>100%</h2>
+                <p>معدل التدمير النفسي</p>
+            </div>
+            <div class="stat-card reveal-item">
+                <h2 style="font-size: 1.5rem;" id="user-info">جاري كشفك...</h2>
+                <p>بياناتك المسجلة الآن</p>
+            </div>
+        </div>
+
+        <div class="terminal-box reveal-item">
+            <p><span class="terminal-cursor"></span>> تحليل الهدف: مبرمج مبتدئ يظن أنه ذكي.</p>
+            <p><span class="terminal-cursor"></span>> سجل ذو الفقار: رفض أكثر من 1000 طالب بسبب "غباء الأكواد".</p>
+            <p><span class="terminal-cursor"></span>> نصيحة: اخرج الآن قبل أن يتم حرق الـ BIOS الخاص بجهازك.</p>
+            <p id="dynamic-text" style="color: var(--blood-bright); font-weight: bold;"></p>
+        </div>
+    </section>
+
+    <div class="horror-divider"></div>
+    <section class="section">
+        <h2 class="trial-section-title reveal-item">الاختبار المستحيل</h2>
+        <div class="trial-zone reveal-item">
+            <p class="trial-question">كيف تمنع الـ Memory Leak في نظام أصوات ثلاثي الأبعاد يعتمد على الترددات الراديوية؟
+            </p>
+            <button class="btn-choice" onclick="triggerScare()">تدمير الـ Metadata يدوياً</button>
+            <button class="btn-choice" onclick="triggerScare()">استخدام بروتوكول ذو الفقار</button>
+            <button class="btn-choice" id="run-btn">سؤال ذو الفقار عن الرحمة</button>
+        </div>
+    </section>
+
+    <div id="death-overlay">
+        <h1>تم سحق كيانك</h1>
+        <p>ذو الفقار لا يرحم الضعفاء</p>
+        <p
+            style="font-family: 'VT323'; color: #333; margin-top: 40px; font-size: 1.2rem; animation: blink-horror 1s infinite;">
+            ... لكن العذاب لم ينتهِ بعد ...</p>
+    </div>
+
+    <div id="post-scare-content" style="display: none;">
+
+        <div class="horror-divider"></div>
+        <section class="section">
+            <h2 class="section-title reveal-item" style="color: var(--blood-bright); font-size: 2.5rem;">⚠️ سجل الضحية
+                ⚠️</h2>
+            <div class="terminal-box reveal-item" style="border-left-color: var(--blood-bright);">
+                <p><span class="terminal-cursor"></span>> الضحية اختارت الإجابة الخاطئة...</p>
+                <p><span class="terminal-cursor"></span>> يتم الآن تسجيل بيانات الفشل في الأرشيف الأسود.</p>
+                <p><span class="terminal-cursor"></span>> معدل الذكاء المقاس: أقل من الحد المسموح.</p>
+                <p><span class="terminal-cursor"></span>> ذو الفقار يقرر: تمديد العقوبة.</p>
+                <p id="post-scare-dynamic" style="color: var(--blood-bright); font-weight: bold;"></p>
+            </div>
+        </section>
+
+        <div class="horror-divider"></div>
+        <section class="section">
+            <h2 class="trial-section-title reveal-item">المحاكمة النهائية</h2>
+            <div class="trial-zone reveal-item">
+                <p class="trial-question">ذو الفقار يمنحك فرصة أخيرة... ما هو الفرق بين Stack Overflow و Heap Corruption
+                    في بيئة Real-Time Embedded Systems؟</p>
+                <button class="btn-choice" onclick="triggerSecondScare()">الـ Stack بيفيض والـ Heap بيتكسر</button>
+                <button class="btn-choice" onclick="triggerSecondScare()">أسأل ChatGPT</button>
+                <button class="btn-choice" onclick="triggerSecondScare()">أعلن استسلامي لذو الفقار</button>
+            </div>
+        </section>
+
+        <div id="final-section" style="display: none;">
+            <div class="horror-divider"></div>
+            <section class="section">
+                <h2 class="section-title reveal-item" style="font-size: 3rem;">💀 الحكم النهائي 💀</h2>
+                <div class="stat-cards-container">
+                    <div class="stat-card reveal-item">
+                        <h2 style="font-size: 2rem; color: var(--blood-bright);">فاشل</h2>
+                        <p>تصنيفك الرسمي</p>
+                    </div>
+                    <div class="stat-card reveal-item">
+                        <h2 id="count2">0</h2>
+                        <p>ثانية قبل حذف ملفاتك</p>
+                    </div>
+                    <div class="stat-card reveal-item">
+                        <h2 style="font-size: 2rem;">♾️</h2>
+                        <p>مدة العقوبة</p>
+                    </div>
+                </div>
+                <div class="terminal-box reveal-item" style="border-left-color: var(--blood-bright); margin-top: 40px;">
+                    <p><span class="terminal-cursor"></span>> جاري تشفير القرص الصلب...</p>
+                    <p><span class="terminal-cursor"></span>> يتم إرسال بياناتك إلى الأرشيف المظلم...</p>
+                    <p><span class="terminal-cursor"></span>> ذو الفقار: "كنت أعلم أنك لن تنجو."</p>
+                    <p><span class="terminal-cursor"></span>> نصيحة أخيرة: ابدأ من الصفر... أو استسلم للأبد.</p>
+                    <p id="final-dynamic" style="color: var(--blood-bright); font-weight: bold;"></p>
+                </div>
+            </section>
+        </div>
+
+        <div class="blood-pool"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
