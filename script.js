@@ -1,7 +1,7 @@
 let systemActive = false;
 
 const bgMusic = new Howl({
-    src: ['https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3'],
+    src: [],
     loop: true, volume: 0.3
 });
 
